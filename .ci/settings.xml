@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings
+    xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd"
+    xmlns="http://maven.apache.org/SETTINGS/1.1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+>
+    <servers>
+        <server>
+            <username>${env.MAVEN_REPO_READER_USERNAME}</username>
+            <password>${env.MAVEN_REPO_READER_PASSWORD}</password>
+            <id>central</id>
+        </server>
+        <server>
+            <username>${env.MAVEN_REPO_READER_USERNAME}</username>
+            <password>${env.MAVEN_REPO_READER_PASSWORD}</password>
+            <id>snapshots</id>
+        </server>
+    </servers>
+    <profiles>
+        <profile>
+            <repositories>
+                <repository>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                    <id>central</id>
+                    <name>${env.MAVEN_REPO_RELEASES_KEY}</name>
+                    <url>${env.MAVEN_REPO_URL}/${env.MAVEN_REPO_RELEASES_KEY}</url>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                    <id>central</id>
+                    <name>${env.MAVEN_REPO_RELEASES_KEY}</name>
+                    <url>${env.MAVEN_REPO_URL}/${env.MAVEN_REPO_RELEASES_KEY}</url>
+                </pluginRepository>
+            </pluginRepositories>
+            <id>${env.MAVEN_SETTINGS_PROFILE}</id>
+        </profile>
+    </profiles>
+    <activeProfiles>
+        <activeProfile>${env.MAVEN_SETTINGS_PROFILE}</activeProfile>
+    </activeProfiles>
+</settings>

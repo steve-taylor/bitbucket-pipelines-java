@@ -1,0 +1,51 @@
+image: maven:3.5.0-jdk-8
+pipelines:
+  default:
+    - step:
+        name: Build and test
+        max-time: 20
+        caches:
+          - maven
+        script:
+          - mvn -s .ci/settings.xml clean verify
+  branches:
+    master:
+      - step:
+          name: Build and test
+          max-time: 20
+          caches:
+            - maven
+          script:
+            - mvn -s .ci/settings.xml clean verify
+          artifacts:
+            - target/**
+      - step:
+          name: Deploy to Artifactory
+          max-time: 20
+          caches:
+            - maven
+          script:
+            - mvn -s .ci/settings.xml deploy
+  # Manually triggered via Bitbucket UI
+  custom:
+    release-major-version:
+      - step:
+          max-time: 10
+          caches:
+            - maven
+          script:
+            - ./.ci/version.sh major
+    release-minor-version:
+      - step:
+          max-time: 10
+          caches:
+            - maven
+          script:
+            - ./.ci/version.sh minor
+    release-patch:
+      - step:
+          max-time: 10
+          caches:
+            - maven
+          script:
+            - ./.ci/version.sh patch
