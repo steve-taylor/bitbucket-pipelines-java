@@ -13,7 +13,7 @@ uses Maven. It does the following:
 
 The manual release tasks
 
-  * Incrememnt the major, minor, or patch component of the `version` property
+  * Increment the major, minor, or patch component of the `version` property
     in the project's pom.xml
   * Commit the change to pom.xml to `develop`
   * Tag `develop` with the updated version
@@ -66,7 +66,7 @@ pair that allows Bitbucket Pipelines to push to git.
 
 1. Go to *Settings* / *Security* / *SSH keys* in your Bitbucket team.
 2. Click *Add key*
-3. Generate an ssh key pair and paste the **public** key into into the *Key*
+3. Generate an ssh key pair and paste the **public** key into the *Key*
    field. (The dialog contains links to instructions to generate an ssh key
    pair.)
 4. Provide a label and click *Add key* to finish adding the team-level ssh
